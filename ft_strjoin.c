@@ -1,40 +1,40 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pneto-vi <pneto-vi@student.42lisboa.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/16 18:38:01 by pneto-vi          #+#    #+#             */
+/*   Updated: 2026/04/16 18:38:02 by pneto-vi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-size_t	my_strlen(const char *s)
-{
-	int	i;
-
-	i = 0;
-	while(s[i])
-		i++;
-	return (i);
-}
-
-char	*ft_strjoin(const char *s1, const char *s2)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*rstr;
 	size_t	i;
-	size_t	cpy_i;
+	size_t	j;
 
-
-	rstr = malloc((my_strlen(s1) + my_strlen(s2) + 1) * sizeof(char));
+	if (!s1 || !s2)
+		return (NULL);
+	rstr = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
 	if (!rstr)
 		return (NULL);
-	cpy_i = 0;
 	i = 0;
-	while (s1[cpy_i])
+	while (s1[i])
 	{
-		rstr[i] = s1[cpy_i];
-		cpy_i++;
+		rstr[i] = s1[i];
 		i++;
 	}
-	cpy_i = 0;
-	while (s2[cpy_i])
+	j = 0;
+	while (s2[j])
 	{
-		rstr[i] = s2[cpy_i];
-		cpy_i++;
-		i++;
+		rstr[i + j] = s2[j];
+		j++;
 	}
-	rstr[i] = '\0';
+	rstr[i + j] = '\0';
 	return (rstr);
 }

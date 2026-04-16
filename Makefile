@@ -1,10 +1,11 @@
 CC = gcc
 
-FLAGS = -Wall -Werror -Wextra -fsanitize=address -g
+FLAGS = -Wall -Werror -Wextra -g
 NAME = libft.a
 OBJS = $(SRCS:.c=.o)
 
 SRCS = ft_isalpha.c \
+		ft_atoi.c \
 		ft_isdigit.c \
 		ft_isalnum.c \
 		ft_isprint.c \
@@ -34,15 +35,19 @@ SRCS = ft_isalpha.c \
 		ft_strmapi.c \
 		ft_itoa.c \
 		ft_lstnew.c \
-		ft_lstadd_front.c \ 
+		ft_lstadd_front.c \
 		ft_lstsize.c \
 		ft_lstlast.c \
-		ft_lstadd_back.c \ 
+		ft_lstadd_back.c \
 		ft_lstdelone.c \
 		ft_lstclear.c \
 		ft_lstiter.c \
 		ft_lstmap.c \
-
+		ft_substr.c \
+		ft_memcmp.c \
+		ft_memchr.c \
+		ft_split.c \
+		
 all:$(NAME)
 
 %.o: %.c

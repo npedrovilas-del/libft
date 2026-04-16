@@ -1,44 +1,35 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pneto-vi <pneto-vi@student.42lisboa.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/16 18:38:28 by pneto-vi          #+#    #+#             */
+/*   Updated: 2026/04/16 18:38:29 by pneto-vi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-static size_t	my_len(const char *s)
-{
-	size_t	i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
-
-// append N bytes of src into dst (size has to be at least size of dst).
 size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
 	size_t	src_len;
 	size_t	dst_len;
-	int	i;
+	size_t	i;
 
-	src_len = my_len(src);
-	dst_len = my_len(dst);
-
-	if (!src || size <= dst_len)
-	{
+	src_len = ft_strlen(src);
+	if (size == 0)
+		return (src_len);
+	dst_len = ft_strlen(dst);
+	if (size <= dst_len)
 		return (src_len + size);
-	}
 	i = 0;
-	while (src[i] != '\0' && i + dst_len < size - 1)
+	while (src[i] != '\0' && (dst_len + i + 1) < size)
 	{
-		dst[i + dst_len] = src[i];
+		dst[dst_len + i] = src[i];
 		i++;
 	}
-	dst[i + dst_len] = '\0';
+	dst[dst_len + i] = '\0';
 	return (dst_len + src_len);
 }
-
-/*
-	return value of this function can be useful for check if the string was truncated.
-	if the return value is bigger than the size: string is fully concatenated.
-	if equall or smaller is truncated.
-
-	if src is empty or the size is not enough for dst, it will do nothing and return
-	the (size + lenght of src) why? idk
-*/

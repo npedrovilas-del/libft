@@ -1,14 +1,27 @@
-#include "libft.h"
-void ft_putstr_fd(char *s, int fd)
-{
-    int c;
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pneto-vi <pneto-vi@student.42lisboa.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/16 18:35:12 by pneto-vi          #+#    #+#             */
+/*   Updated: 2026/04/16 18:47:03 by pneto-vi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-    if(!s)
-    return ;
-    c = 0;
-    while(s[c] != '\0')
-    {
-        write(fd, &s[c], 1);
-        c++;
-    }
+#include "libft.h"
+
+void	ft_putstr_fd(char *s, int fd)
+{
+	int	c;
+
+	if (!s)
+		return ;
+	c = 0;
+	while (s[c] != '\0')
+	{
+		write(fd, &s[c], 1);
+		c++;
+	}
 }

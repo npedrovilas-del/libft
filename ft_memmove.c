@@ -1,31 +1,36 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pneto-vi <pneto-vi@student.42lisboa.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/16 18:32:50 by pneto-vi          #+#    #+#             */
+/*   Updated: 2026/04/16 18:46:49 by pneto-vi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-/* Just like memcpy, but deals with overlap cases */
-void *ft_memmove(void *dest, const void *src, size_t n)
+void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	unsigned char *temp_dest;
-	const unsigned char *temp_src;
+	unsigned char		*d;
+	const unsigned char	*s;
 
-	// if dest is "ahead" of src, copys backwards, preventing overriding if there is overlap.
+	if (!dest && !src)
+		return (NULL);
 	if (dest > src)
 	{
-		// here both temp vars point to the last byte (- 1) to point to the right element
-		// (e.g. size_t n = 3, temp + (3-1) that is the third byte)
-		temp_dest = (unsigned char *)dest + (n - 1);
-		temp_src = (const unsigned char *)src + (n - 1);
-		// simply copy backwards
-		while (n)
+		d = (unsigned char *)dest + n;
+		s = (const unsigned char *)src + n;
+		while (n--)
 		{
-			*temp_dest = *temp_src;
-			temp_dest--;
-			temp_src--;
-			n--;
+			d--;
+			s--;
+			*d = *s;
 		}
 	}
-	// if dest is "before" src, makes a normal copy
 	else
-	{
 		dest = ft_memcpy(dest, src, n);
-	}
 	return (dest);
 }

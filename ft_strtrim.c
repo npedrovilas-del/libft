@@ -1,56 +1,38 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pneto-vi <pneto-vi@student.42lisboa.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/16 18:42:30 by pneto-vi          #+#    #+#             */
+/*   Updated: 2026/04/16 18:42:31 by pneto-vi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-
-static unsigned int	check_set(const char c, const char *set)
+char	*ft_strtrim(char const *s1, char const *set)
 {
+	size_t	start;
+	size_t	end;
+	char	*str;
 	size_t	i;
 
-	i = 0;
-	while(set[i] != '\0')
-	{
-		if (c == set[i])
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
-static size_t	trimmed_size(const char *s1, const char *set)
-{
-	size_t	i;
-	size_t	size;
-
-	i = 0;
-	size = 0;
-	while(s1[i])
-	{
-		if (!check_set(s1[i], set))
-			size++;
-		i++;
-	}
-	return (size);
-}
-
-char	*ft_strtrim(const char *s1, const char *set)
-{
-	char	*trimmed_str;
-	size_t	str_i;
-	size_t	trim_i;
-
-	trimmed_str = malloc((trimmed_size(s1, set) + 1) * sizeof(char));
-	if (!trimmed_str)
+	if (!s1 || !set)
 		return (NULL);
-	str_i = 0;
-	trim_i = 0;
-	while (s1[str_i])
-	{
-		if (!check_set(s1[str_i], set))
-		{
-			trimmed_str[trim_i] = s1[str_i];
-			trim_i++;
-		}
-		str_i++;
-	}
-	trimmed_str[trim_i] = '\0';
-	return (trimmed_str);
+	start = 0;
+	while (s1[start] && ft_strchr(set, s1[start]))
+		start++;
+	end = ft_strlen(s1);
+	while (end > start && ft_strchr(set, s1[end - 1]))
+		end--;
+	str = malloc(sizeof(char) * (end - start + 1));
+	if (!str)
+		return (NULL);
+	i = 0;
+	while (start < end)
+		str[i++] = s1[start++];
+	str[i] = '\0';
+	return (str);
 }

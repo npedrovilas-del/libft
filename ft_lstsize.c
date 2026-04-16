@@ -1,13 +1,26 @@
-#include "libft.h"
-int ft_lstsize(t_list *lst)
-{
-    int c;
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pneto-vi <pneto-vi@student.42lisboa.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/16 18:30:34 by pneto-vi          #+#    #+#             */
+/*   Updated: 2026/04/16 18:46:27 by pneto-vi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-    c = 0;
-    while(lst != NULL)
-    {
-        c++;
-        lst = lst->next;
-    }
-    return(c);
+#include "libft.h"
+
+int	ft_lstsize(t_list *lst)
+{
+	int	c;
+
+	c = 0;
+	while (lst != NULL)
+	{
+		c++;
+		lst = lst->next;
+	}
+	return (c);
 }
