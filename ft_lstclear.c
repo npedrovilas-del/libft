@@ -6,7 +6,7 @@
 /*   By: pneto-vi <pneto-vi@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/16 18:28:12 by pneto-vi          #+#    #+#             */
-/*   Updated: 2026/04/16 18:28:14 by pneto-vi         ###   ########.fr       */
+/*   Updated: 2026/04/21 10:35:38 by pneto-vi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_lstclear(t_list **lst, void (*del)(void *))
 		return ;
 	while (*lst != NULL)
 	{
-		h = (*lst)->next;
+		h = (*lst)-> next;
 		ft_lstdelone(*lst, del);
 		*lst = h;
 	}
